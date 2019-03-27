@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.matriculate.dao.SchoolInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.matriculate.entity.SchoolInfo" >
+    <constructor >
+      <arg column="pcxx" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yxdm" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yxmc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="klmc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="admit_num" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="top_score" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="top_rank" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="avg_score" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="avg_rank" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="last_score" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="last_rank" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.matriculate.entity.SchoolInfo" >
+    insert into yxzdf2019 (pcxx, yxdm, yxmc, 
+      klmc, admit_num, top_score, 
+      top_rank, avg_score, avg_rank, 
+      last_score, last_rank)
+    values (#{pcxx,jdbcType=VARCHAR}, #{yxdm,jdbcType=VARCHAR}, #{yxmc,jdbcType=VARCHAR}, 
+      #{klmc,jdbcType=VARCHAR}, #{admitNum,jdbcType=BIGINT}, #{topScore,jdbcType=INTEGER}, 
+      #{topRank,jdbcType=INTEGER}, #{avgScore,jdbcType=DECIMAL}, #{avgRank,jdbcType=DECIMAL}, 
+      #{lastScore,jdbcType=INTEGER}, #{lastRank,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.matriculate.entity.SchoolInfo" >
+    insert into yxzdf2019
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pcxx != null" >
+        pcxx,
+      </if>
+      <if test="yxdm != null" >
+        yxdm,
+      </if>
+      <if test="yxmc != null" >
+        yxmc,
+      </if>
+      <if test="klmc != null" >
+        klmc,
+      </if>
+      <if test="admitNum != null" >
+        admit_num,
+      </if>
+      <if test="topScore != null" >
+        top_score,
+      </if>
+      <if test="topRank != null" >
+        top_rank,
+      </if>
+      <if test="avgScore != null" >
+        avg_score,
+      </if>
+      <if test="avgRank != null" >
+        avg_rank,
+      </if>
+      <if test="lastScore != null" >
+        last_score,
+      </if>
+      <if test="lastRank != null" >
+        last_rank,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pcxx != null" >
+        #{pcxx,jdbcType=VARCHAR},
+      </if>
+      <if test="yxdm != null" >
+        #{yxdm,jdbcType=VARCHAR},
+      </if>
+      <if test="yxmc != null" >
+        #{yxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="klmc != null" >
+        #{klmc,jdbcType=VARCHAR},
+      </if>
+      <if test="admitNum != null" >
+        #{admitNum,jdbcType=BIGINT},
+      </if>
+      <if test="topScore != null" >
+        #{topScore,jdbcType=INTEGER},
+      </if>
+      <if test="topRank != null" >
+        #{topRank,jdbcType=INTEGER},
+      </if>
+      <if test="avgScore != null" >
+        #{avgScore,jdbcType=DECIMAL},
+      </if>
+      <if test="avgRank != null" >
+        #{avgRank,jdbcType=DECIMAL},
+      </if>
+      <if test="lastScore != null" >
+        #{lastScore,jdbcType=INTEGER},
+      </if>
+      <if test="lastRank != null" >
+        #{lastRank,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectByRankAndSubject" resultMap="BaseResultMap">
+    select
+    *
+    from yxzdf2019
+    where last_rank >= #{pm}-200
+    AND klmc= #{klmc}
+    ORDER BY last_rank LIMIT 0,50;
+  </select>
+
+  <select id="listAll" resultMap="BaseResultMap">
+    select *
+    from yxzdf2019;
+  </select>
+</mapper>

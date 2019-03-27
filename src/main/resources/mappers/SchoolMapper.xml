@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.matriculate.dao.SchoolMapper" >
+  <resultMap id="BaseResultMap" type="com.matriculate.entity.School" >
+    <constructor >
+      <arg column="ksh" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="klmc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="klxx" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pcmc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pcxx" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yxdm" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yxmc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="zydm" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="zymc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="zf" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="pm" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ccdm" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="lqzyxh" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.matriculate.entity.School" >
+    insert into yslqk2018 (ksh, klmc, klxx, 
+      pcmc, pcxx, yxdm, yxmc, 
+      zydm, zymc, zf, pm, 
+      ccdm, lqzyxh)
+    values (#{ksh,jdbcType=VARCHAR}, #{klmc,jdbcType=VARCHAR}, #{klxx,jdbcType=VARCHAR}, 
+      #{pcmc,jdbcType=VARCHAR}, #{pcxx,jdbcType=VARCHAR}, #{yxdm,jdbcType=VARCHAR}, #{yxmc,jdbcType=VARCHAR}, 
+      #{zydm,jdbcType=VARCHAR}, #{zymc,jdbcType=VARCHAR}, #{zf,jdbcType=INTEGER}, #{pm,jdbcType=INTEGER}, 
+      #{ccdm,jdbcType=VARCHAR}, #{lqzyxh,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.matriculate.entity.School" >
+    insert into yslqk2018
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ksh != null" >
+        ksh,
+      </if>
+      <if test="klmc != null" >
+        klmc,
+      </if>
+      <if test="klxx != null" >
+        klxx,
+      </if>
+      <if test="pcmc != null" >
+        pcmc,
+      </if>
+      <if test="pcxx != null" >
+        pcxx,
+      </if>
+      <if test="yxdm != null" >
+        yxdm,
+      </if>
+      <if test="yxmc != null" >
+        yxmc,
+      </if>
+      <if test="zydm != null" >
+        zydm,
+      </if>
+      <if test="zymc != null" >
+        zymc,
+      </if>
+      <if test="zf != null" >
+        zf,
+      </if>
+      <if test="pm != null" >
+        pm,
+      </if>
+      <if test="ccdm != null" >
+        ccdm,
+      </if>
+      <if test="lqzyxh != null" >
+        lqzyxh,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ksh != null" >
+        #{ksh,jdbcType=VARCHAR},
+      </if>
+      <if test="klmc != null" >
+        #{klmc,jdbcType=VARCHAR},
+      </if>
+      <if test="klxx != null" >
+        #{klxx,jdbcType=VARCHAR},
+      </if>
+      <if test="pcmc != null" >
+        #{pcmc,jdbcType=VARCHAR},
+      </if>
+      <if test="pcxx != null" >
+        #{pcxx,jdbcType=VARCHAR},
+      </if>
+      <if test="yxdm != null" >
+        #{yxdm,jdbcType=VARCHAR},
+      </if>
+      <if test="yxmc != null" >
+        #{yxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zydm != null" >
+        #{zydm,jdbcType=VARCHAR},
+      </if>
+      <if test="zymc != null" >
+        #{zymc,jdbcType=VARCHAR},
+      </if>
+      <if test="zf != null" >
+        #{zf,jdbcType=INTEGER},
+      </if>
+      <if test="pm != null" >
+        #{pm,jdbcType=INTEGER},
+      </if>
+      <if test="ccdm != null" >
+        #{ccdm,jdbcType=VARCHAR},
+      </if>
+      <if test="lqzyxh != null" >
+        #{lqzyxh,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

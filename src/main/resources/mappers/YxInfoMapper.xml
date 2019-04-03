@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.matriculate.dao.YxInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.matriculate.entity.YxInfo" >
+    <constructor >
+      <arg column="yxdm" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yxmc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="zgbm" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="szd" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="issh" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="xlcc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="is985" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="is211" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="syl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bxx" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yxlx" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ljjl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="xxdz" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yx" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yxjj" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="xxzy" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="zbzy" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="lqsj" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="logo" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.matriculate.entity.YxInfo" >
+    insert into yxinfo (yxdm, yxmc, zgbm, 
+      szd, issh, xlcc, is985, 
+      is211, syl, bxx, yxlx, 
+      ljjl, xxdz, yx, yxjj, 
+      xxzy, zbzy, lqsj, logo
+      )
+    values (#{yxdm,jdbcType=VARCHAR}, #{yxmc,jdbcType=VARCHAR}, #{zgbm,jdbcType=VARCHAR}, 
+      #{szd,jdbcType=VARCHAR}, #{issh,jdbcType=VARCHAR}, #{xlcc,jdbcType=VARCHAR}, #{is985,jdbcType=VARCHAR}, 
+      #{is211,jdbcType=VARCHAR}, #{syl,jdbcType=VARCHAR}, #{bxx,jdbcType=VARCHAR}, #{yxlx,jdbcType=VARCHAR}, 
+      #{ljjl,jdbcType=VARCHAR}, #{xxdz,jdbcType=VARCHAR}, #{yx,jdbcType=VARCHAR}, #{yxjj,jdbcType=VARCHAR}, 
+      #{xxzy,jdbcType=VARCHAR}, #{zbzy,jdbcType=VARCHAR}, #{lqsj,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.matriculate.entity.YxInfo" >
+    insert into yxinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="yxdm != null" >
+        yxdm,
+      </if>
+      <if test="yxmc != null" >
+        yxmc,
+      </if>
+      <if test="zgbm != null" >
+        zgbm,
+      </if>
+      <if test="szd != null" >
+        szd,
+      </if>
+      <if test="issh != null" >
+        issh,
+      </if>
+      <if test="xlcc != null" >
+        xlcc,
+      </if>
+      <if test="is985 != null" >
+        is985,
+      </if>
+      <if test="is211 != null" >
+        is211,
+      </if>
+      <if test="syl != null" >
+        syl,
+      </if>
+      <if test="bxx != null" >
+        bxx,
+      </if>
+      <if test="yxlx != null" >
+        yxlx,
+      </if>
+      <if test="ljjl != null" >
+        ljjl,
+      </if>
+      <if test="xxdz != null" >
+        xxdz,
+      </if>
+      <if test="yx != null" >
+        yx,
+      </if>
+      <if test="yxjj != null" >
+        yxjj,
+      </if>
+      <if test="xxzy != null" >
+        xxzy,
+      </if>
+      <if test="zbzy != null" >
+        zbzy,
+      </if>
+      <if test="lqsj != null" >
+        lqsj,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="yxdm != null" >
+        #{yxdm,jdbcType=VARCHAR},
+      </if>
+      <if test="yxmc != null" >
+        #{yxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zgbm != null" >
+        #{zgbm,jdbcType=VARCHAR},
+      </if>
+      <if test="szd != null" >
+        #{szd,jdbcType=VARCHAR},
+      </if>
+      <if test="issh != null" >
+        #{issh,jdbcType=VARCHAR},
+      </if>
+      <if test="xlcc != null" >
+        #{xlcc,jdbcType=VARCHAR},
+      </if>
+      <if test="is985 != null" >
+        #{is985,jdbcType=VARCHAR},
+      </if>
+      <if test="is211 != null" >
+        #{is211,jdbcType=VARCHAR},
+      </if>
+      <if test="syl != null" >
+        #{syl,jdbcType=VARCHAR},
+      </if>
+      <if test="bxx != null" >
+        #{bxx,jdbcType=VARCHAR},
+      </if>
+      <if test="yxlx != null" >
+        #{yxlx,jdbcType=VARCHAR},
+      </if>
+      <if test="ljjl != null" >
+        #{ljjl,jdbcType=VARCHAR},
+      </if>
+      <if test="xxdz != null" >
+        #{xxdz,jdbcType=VARCHAR},
+      </if>
+      <if test="yx != null" >
+        #{yx,jdbcType=VARCHAR},
+      </if>
+      <if test="yxjj != null" >
+        #{yxjj,jdbcType=VARCHAR},
+      </if>
+      <if test="xxzy != null" >
+        #{xxzy,jdbcType=VARCHAR},
+      </if>
+      <if test="zbzy != null" >
+        #{zbzy,jdbcType=VARCHAR},
+      </if>
+      <if test="lqsj != null" >
+        #{lqsj,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

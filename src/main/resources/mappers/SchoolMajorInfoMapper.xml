@@ -108,4 +108,8 @@
       </if>
     </trim>
   </insert>
+
+  <select id="selectByRankAndMajor" resultMap="BaseResultMap">
+    SELECT DISTINCT * FROM zyzdf2019 WHERE zymc LIKE CONCAT('%',#{zymc},'%')  AND last_rank > #{pm};
+  </select>
 </mapper>

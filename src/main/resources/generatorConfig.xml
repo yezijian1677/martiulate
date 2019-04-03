@@ -73,6 +73,9 @@
 
         <table tableName="zyzdf2019" domainObjectName="SchoolMajorInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
 
+        <table tableName="major_3" domainObjectName="SchoolAllMajor" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="yxinfo" domainObjectName="YxInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+
         <!-- geelynote mybatis插件的搭建 -->
     </context>
 </generatorConfiguration>

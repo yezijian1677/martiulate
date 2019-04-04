@@ -1,6 +1,7 @@
 package com.matriculate.dao;
 
 import com.matriculate.entity.SchoolInfo;
+import com.matriculate.entity.SchoolMajorInfo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +16,7 @@ public interface SchoolInfoMapper {
     List<SchoolInfo> selectByRankAndSubject(@Param("pm") Integer pm, @Param("klmc") String klmc);
 
     List<SchoolInfo> listAll();
+
+    List<SchoolInfo> selectByRankAndCity(@Param("pm") Integer pm, @Param("city") String city, @Param("klmc") String klmc);
+
 }

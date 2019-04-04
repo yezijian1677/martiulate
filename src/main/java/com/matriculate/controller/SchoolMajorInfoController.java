@@ -23,9 +23,12 @@ public class SchoolMajorInfoController {
         return schoolMajorService.selectByRankAndMajor(pm, zymc);
     }
 
-    @RequestMapping("/selectByRankAndCityAndKlmc")
+    @RequestMapping("/selectByRankAndMajorAndCity")
     @ResponseBody
-    public ServerResponse<List<SchoolMajorInfo>> selectByRankAndCityAndKlmc(Integer pm, String city, String klmc){
-        return schoolMajorService.selectByRankAndCity(pm, city, klmc);
+    public ServerResponse<List<SchoolMajorInfo>> selectByRankAndMajorAndCity(Integer pm, String major, String city){
+        return schoolMajorService.selectByRankAndMajorAndCity(pm, major, city);
     }
+
+
+
 }

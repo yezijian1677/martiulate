@@ -113,4 +113,17 @@
     select *
     from yxzdf2018;
   </select>
+
+  <select id="selectByRankAndCity" resultMap="BaseResultMap">
+    SELECT
+    DISTINCT a.*
+    FROM yxzdf2018 AS a, yxinfo AS b
+    WHERE a.minmc > #{pm}
+    AND a.yxmc = b.yxmc
+    AND b.szd LIKE CONCAT('%',#{city},'%')
+    and klmc= #{klmc}
+  </select>
+
+
+
 </mapper>

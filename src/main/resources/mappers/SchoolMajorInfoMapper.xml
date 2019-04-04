@@ -17,6 +17,22 @@
       <arg column="minmc" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
+
+  <resultMap id="myMap" type="com.matriculate.entity.SchoolMajorInfo">
+    <result property="pcmc" column="pcmc" jdbcType="VARCHAR" javaType="java.lang.String"/>
+    <result column="yxdm" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <result column="yxmc" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <result column="klmc" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <result column="zymc" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <result column="lqs" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <result column="maxzf" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <result column="maxmc" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <result column="avgzf" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <result column="avgmc" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <result column="minzf" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <result column="minmc" jdbcType="VARCHAR" javaType="java.lang.String" />
+  </resultMap>
+
   <insert id="insert" parameterType="com.matriculate.entity.SchoolMajorInfo" >
     insert into zyzdf2018 (pcmc, yxdm, yxmc, 
       klmc, zymc, lqs, maxzf, 
@@ -117,13 +133,15 @@
     AND minmc > #{pm};
   </select>
 
-  <select id="selectByRankAndCity" resultMap="BaseResultMap">
+  <select id="selectByRankAndMajorAndCity" resultMap="BaseResultMap">
     SELECT
     DISTINCT a.*
-    FROM yxzdf2018 AS a, yxinfo AS b
-    WHERE a.minmc > 5000
+    FROM zyzdf2018 AS a, yxinfo AS b
+    WHERE a.zymc LIKE CONCAT('%',#{major},'%')
+    AND a.minmc > #{pm}
     AND a.yxmc = b.yxmc
-    AND (b.szd LIKE '%天津%' OR b.szd LIKE '%南京%')
-    and klmc='理工类'
+    AND b.szd LIKE CONCAT('%',#{city},'%')
   </select>
+
+
 </mapper>

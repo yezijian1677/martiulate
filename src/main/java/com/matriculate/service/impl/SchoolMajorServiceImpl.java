@@ -47,27 +47,26 @@ public class SchoolMajorServiceImpl implements SchoolMajorService {
         return ServerResponse.createBySuccess(schoolMajorInfos);
     }
 
-
     /**
-     * 根绝排名 城市 和 科类名称选择学校
+     * 根据排名专业城市
      * @param pm
+     * @param major
      * @param city
-     * @param klmc
      * @return
      */
     @Override
-    public ServerResponse<List<SchoolMajorInfo>> selectByRankAndCity(Integer pm, String city, String klmc) {
-        if (pm == null || city == null || klmc == null){
+    public ServerResponse<List<SchoolMajorInfo>> selectByRankAndMajorAndCity(Integer pm, String major, String city) {
+        if (pm == null || major == null || city == null){
             return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
         }
         List<SchoolMajorInfo> schoolMajorInfos;
         String pmStr = String.valueOf(pm);
-        String redisName = "rankSubjectList"+pmStr+city+klmc;
+        String redisName = "rankSubjectList"+pmStr+major+city;
         //判断redis中是否存在该数据 若有则使用redis中的数据
         String rankMajorList = RedisPoolUtil.get(redisName);
 
         if (rankMajorList == null){
-            schoolMajorInfos = schoolMajorInfoMapper.selectByRankAndCity(pm, city, klmc);
+            schoolMajorInfos = schoolMajorInfoMapper.selectByRankAndMajorAndCity(pm, major, city);
             RedisPoolUtil.setEx(redisName, JsonUtil.obj2String(schoolMajorInfos), 120);
         }else {
             schoolMajorInfos = JsonUtil.string2Obj(RedisPoolUtil.get(redisName),List.class, SchoolMajorInfo.class);

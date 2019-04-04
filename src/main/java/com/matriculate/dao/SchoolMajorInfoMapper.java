@@ -14,5 +14,6 @@ public interface SchoolMajorInfoMapper {
 
     List<SchoolMajorInfo> selectByRankAndMajor(@Param("pm") Integer pm, @Param("zymc")String zymc);
 
-    List<SchoolMajorInfo> selectByRankAndCity(@Param("pm") Integer pm, @Param("city") String city, @Param("klmc") String klmc);
+    List<SchoolMajorInfo> selectByRankAndMajorAndCity(@Param("pm") Integer pm, @Param("major") String major, @Param("city") String city);
+
 }

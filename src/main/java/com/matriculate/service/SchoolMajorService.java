@@ -8,5 +8,6 @@ import java.util.List;
 public interface SchoolMajorService {
 
     ServerResponse<List<SchoolMajorInfo>> selectByRankAndMajor(Integer pm, String zymc);
-    ServerResponse<List<SchoolMajorInfo>> selectByRankAndCity(Integer pm, String city, String klmc);
+
+    ServerResponse<List<SchoolMajorInfo>> selectByRankAndMajorAndCity(Integer pm, String major, String city);
 }

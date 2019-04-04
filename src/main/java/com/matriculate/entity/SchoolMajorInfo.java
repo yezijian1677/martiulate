@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 public class SchoolMajorInfo {
     private String pcmc;
@@ -20,17 +20,17 @@ public class SchoolMajorInfo {
 
     private String zymc;
 
-    private Long admitNum;
+    private String lqs;
 
-    private Integer topScore;
+    private String maxzf;
 
-    private Integer topRank;
+    private String maxmc;
 
-    private Long avgScore;
+    private String avgzf;
 
-    private Long avgRank;
+    private String avgmc;
 
-    private Integer lastScore;
+    private String minzf;
 
-    private Integer lastRank;
+    private String minmc;
 }

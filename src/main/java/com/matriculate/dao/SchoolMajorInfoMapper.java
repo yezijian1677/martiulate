@@ -12,7 +12,7 @@ public interface SchoolMajorInfoMapper {
 
     int insertSelective(SchoolMajorInfo record);
 
-    List<SchoolMajorInfo> selectByRankAndMajor(@Param("pm") Integer pm, @Param("zymc") String zymc);
+    List<SchoolMajorInfo> selectByRankAndMajor(@Param("pm") Integer pm, @Param("zymc")String zymc);
 
     List<SchoolMajorInfo> selectByRankAndCity(@Param("pm") Integer pm, @Param("city") String city, @Param("klmc") String klmc);
 }

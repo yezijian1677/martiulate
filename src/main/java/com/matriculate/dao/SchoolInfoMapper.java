@@ -12,7 +12,7 @@ public interface SchoolInfoMapper {
 
     int insertSelective(SchoolInfo record);
 
-    List<SchoolInfo> selectByRankAndSubject(@Param("pm") Integer pm,@Param("klmc") String klmc);
+    List<SchoolInfo> selectByRankAndSubject(@Param("pm") Integer pm, @Param("klmc") String klmc);
 
     List<SchoolInfo> listAll();
 }

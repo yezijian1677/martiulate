@@ -1,6 +1,5 @@
 package com.matriculate.service.impl;
 
-import com.matriculate.common.Const;
 import com.matriculate.common.ResponseCode;
 import com.matriculate.common.ServerResponse;
 import com.matriculate.dao.SchoolMajorInfoMapper;

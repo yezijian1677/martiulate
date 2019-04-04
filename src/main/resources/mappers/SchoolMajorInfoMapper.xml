@@ -8,29 +8,27 @@
       <arg column="yxmc" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="klmc" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="zymc" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="admit_num" jdbcType="BIGINT" javaType="java.lang.Long" />
-      <arg column="top_score" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="top_rank" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="avg_score" jdbcType="DECIMAL" javaType="java.lang.Long" />
-      <arg column="avg_rank" jdbcType="DECIMAL" javaType="java.lang.Long" />
-      <arg column="last_score" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="last_rank" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="lqs" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="maxzf" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="maxmc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="avgzf" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="avgmc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="minzf" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="minmc" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <insert id="insert" parameterType="com.matriculate.entity.SchoolMajorInfo" >
-    insert into zyzdf2019 (pcmc, yxdm, yxmc, 
-      klmc, zymc, admit_num, 
-      top_score, top_rank, avg_score, 
-      avg_rank, last_score, last_rank
-      )
+    insert into zyzdf2018 (pcmc, yxdm, yxmc, 
+      klmc, zymc, lqs, maxzf, 
+      maxmc, avgzf, avgmc, 
+      minzf, minmc)
     values (#{pcmc,jdbcType=VARCHAR}, #{yxdm,jdbcType=VARCHAR}, #{yxmc,jdbcType=VARCHAR}, 
-      #{klmc,jdbcType=VARCHAR}, #{zymc,jdbcType=VARCHAR}, #{admitNum,jdbcType=BIGINT}, 
-      #{topScore,jdbcType=INTEGER}, #{topRank,jdbcType=INTEGER}, #{avgScore,jdbcType=DECIMAL}, 
-      #{avgRank,jdbcType=DECIMAL}, #{lastScore,jdbcType=INTEGER}, #{lastRank,jdbcType=INTEGER}
-      )
+      #{klmc,jdbcType=VARCHAR}, #{zymc,jdbcType=VARCHAR}, #{lqs,jdbcType=VARCHAR}, #{maxzf,jdbcType=VARCHAR}, 
+      #{maxmc,jdbcType=VARCHAR}, #{avgzf,jdbcType=VARCHAR}, #{avgmc,jdbcType=VARCHAR}, 
+      #{minzf,jdbcType=VARCHAR}, #{minmc,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.matriculate.entity.SchoolMajorInfo" >
-    insert into zyzdf2019
+    insert into zyzdf2018
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="pcmc != null" >
         pcmc,
@@ -47,26 +45,26 @@
       <if test="zymc != null" >
         zymc,
       </if>
-      <if test="admitNum != null" >
-        admit_num,
+      <if test="lqs != null" >
+        lqs,
       </if>
-      <if test="topScore != null" >
-        top_score,
+      <if test="maxzf != null" >
+        maxzf,
       </if>
-      <if test="topRank != null" >
-        top_rank,
+      <if test="maxmc != null" >
+        maxmc,
       </if>
-      <if test="avgScore != null" >
-        avg_score,
+      <if test="avgzf != null" >
+        avgzf,
       </if>
-      <if test="avgRank != null" >
-        avg_rank,
+      <if test="avgmc != null" >
+        avgmc,
       </if>
-      <if test="lastScore != null" >
-        last_score,
+      <if test="minzf != null" >
+        minzf,
       </if>
-      <if test="lastRank != null" >
-        last_rank,
+      <if test="minmc != null" >
+        minmc,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -85,31 +83,47 @@
       <if test="zymc != null" >
         #{zymc,jdbcType=VARCHAR},
       </if>
-      <if test="admitNum != null" >
-        #{admitNum,jdbcType=BIGINT},
+      <if test="lqs != null" >
+        #{lqs,jdbcType=VARCHAR},
       </if>
-      <if test="topScore != null" >
-        #{topScore,jdbcType=INTEGER},
+      <if test="maxzf != null" >
+        #{maxzf,jdbcType=VARCHAR},
       </if>
-      <if test="topRank != null" >
-        #{topRank,jdbcType=INTEGER},
+      <if test="maxmc != null" >
+        #{maxmc,jdbcType=VARCHAR},
       </if>
-      <if test="avgScore != null" >
-        #{avgScore,jdbcType=DECIMAL},
+      <if test="avgzf != null" >
+        #{avgzf,jdbcType=VARCHAR},
       </if>
-      <if test="avgRank != null" >
-        #{avgRank,jdbcType=DECIMAL},
+      <if test="avgmc != null" >
+        #{avgmc,jdbcType=VARCHAR},
       </if>
-      <if test="lastScore != null" >
-        #{lastScore,jdbcType=INTEGER},
+      <if test="minzf != null" >
+        #{minzf,jdbcType=VARCHAR},
       </if>
-      <if test="lastRank != null" >
-        #{lastRank,jdbcType=INTEGER},
+      <if test="minmc != null" >
+        #{minmc,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
 
   <select id="selectByRankAndMajor" resultMap="BaseResultMap">
-    SELECT DISTINCT * FROM zyzdf2019 WHERE zymc LIKE CONCAT('%',#{zymc},'%')  AND last_rank > #{pm};
+    SELECT
+    DISTINCT
+     *
+    FROM zyzdf2018
+    WHERE zymc
+    LIKE CONCAT('%',#{zymc},'%')
+    AND minmc > #{pm};
+  </select>
+
+  <select id="selectByRankAndCity" resultMap="BaseResultMap">
+    SELECT
+    DISTINCT a.*
+    FROM yxzdf2018 AS a, yxinfo AS b
+    WHERE a.minmc > 5000
+    AND a.yxmc = b.yxmc
+    AND (b.szd LIKE '%天津%' OR b.szd LIKE '%南京%')
+    and klmc='理工类'
   </select>
 </mapper>

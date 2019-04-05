@@ -18,6 +18,14 @@
       <arg column="lqzyxh" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
+
+<resultMap id="myMap1" type="com.matriculate.entity.SchoolShort">
+  <result property="pcxx" column="pcxx" jdbcType="VARCHAR" javaType="java.lang.String" />
+  <result property="yxmc" column="yxmc" jdbcType="VARCHAR" javaType="java.lang.String" />
+  <result property="zymc" column="zymc" jdbcType="VARCHAR" javaType="java.lang.String" />
+  <result property="pm" column="pm" jdbcType="INTEGER" javaType="java.lang.Integer" />
+</resultMap>
+
   <insert id="insert" parameterType="com.matriculate.entity.School" >
     insert into yslqk2018 (ksh, klmc, klxx, 
       pcmc, pcxx, yxdm, yxmc, 
@@ -114,8 +122,8 @@
     </trim>
   </insert>
 
-  <select id="EquivalentCandidates" resultMap="BaseResultMap">
-    SELECT  DISTINCT pcxx,yxmc,zymc,pm FROM yslqk2018 WHERE  klmc='理工类' ORDER BY ABS(pm-11120)  LIMIT 0,50
+  <select id="equivalentCandidates" resultMap="myMap1">
+    SELECT  DISTINCT pcxx,yxmc,zymc,pm FROM yslqk2018 WHERE  klmc=#{klmc} ORDER BY ABS(pm-#{pm})  LIMIT 0,50
   </select>
 
 

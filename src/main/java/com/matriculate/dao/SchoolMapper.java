@@ -1,6 +1,7 @@
 package com.matriculate.dao;
 
 import com.matriculate.entity.School;
+import com.matriculate.entity.SchoolShort;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +13,5 @@ public interface SchoolMapper {
 
     int insertSelective(School record);
 
-    List<School> EquivalentCandidates(@Param("pm")Integer pm, @Param("klmc") String klmc);
+    List<SchoolShort> equivalentCandidates(@Param("pm")Integer pm, @Param("klmc") String klmc);
 }

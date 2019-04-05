@@ -123,8 +123,23 @@
   </insert>
 
   <select id="equivalentCandidates" resultMap="myMap1">
-    SELECT  DISTINCT pcxx,yxmc,zymc,pm FROM yslqk2018 WHERE  klmc=#{klmc} ORDER BY ABS(pm-#{pm})  LIMIT 0,50
+    SELECT
+    DISTINCT
+    pcxx,yxmc,zymc,pm
+    FROM yslqk2018
+    WHERE  klmc=#{klmc}
+    ORDER BY ABS(pm-#{pm})  LIMIT 0,50
   </select>
 
+
+
+  <select id="equivalentCandidatesAll" resultMap="BaseResultMap">
+     SELECT
+      *
+    FROM yslqk2018
+    WHERE ABS(pm-#{pm})=(SELECT  MIN(ABS(pm-#{pm}))
+    FROM yslqk2018
+    WHERE klmc=#{klmc}) limit 0,10
+  </select>
 
 </mapper>

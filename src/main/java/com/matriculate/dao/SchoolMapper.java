@@ -13,5 +13,19 @@ public interface SchoolMapper {
 
     int insertSelective(School record);
 
+    /**
+     * 同位次考生去向
+     * @param pm
+     * @param klmc
+     * @return
+     */
     List<SchoolShort> equivalentCandidates(@Param("pm")Integer pm, @Param("klmc") String klmc);
+
+    /**
+     * 同位次考生
+     * @param pm
+     * @param klmc
+     * @return
+     */
+    List<School> equivalentCandidatesAll(@Param("pm")Integer pm, @Param("klmc") String klmc);
 }

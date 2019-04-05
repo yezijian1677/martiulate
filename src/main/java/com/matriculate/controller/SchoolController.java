@@ -19,4 +19,10 @@ public class SchoolController {
     public ServerResponse equivalentCandidates(Integer pm, String klmc){
         return schoolService.equivalentCandidates(pm, klmc);
     }
+
+    @RequestMapping("/candidatesAll.do")
+    @ResponseBody
+    public ServerResponse equivalentCandidatesAll(Integer pm, String klmc){
+        return schoolService.equivalentCandidatesAll(pm, klmc);
+    }
 }

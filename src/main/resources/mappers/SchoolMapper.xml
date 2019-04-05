@@ -113,4 +113,10 @@
       </if>
     </trim>
   </insert>
+
+  <select id="EquivalentCandidates" resultMap="BaseResultMap">
+    SELECT  DISTINCT pcxx,yxmc,zymc,pm FROM yslqk2018 WHERE  klmc='理工类' ORDER BY ABS(pm-11120)  LIMIT 0,50
+  </select>
+
+
 </mapper>

@@ -13,5 +13,5 @@ public interface SchoolInfoService {
 
     ServerResponse<List<SchoolInfo>> listAll();
 
-    ServerResponse<List<SchoolInfo>> selectByRankAndCity(Integer pm, String city, String klmc);
+    ServerResponse<List<SchoolInfo>> selectByRankAndCityAndKlmc(Integer pm, String city, String klmc);
 }

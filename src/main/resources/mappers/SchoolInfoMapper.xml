@@ -114,7 +114,7 @@
     from yxzdf2018;
   </select>
 
-  <select id="selectByRankAndCity" resultMap="BaseResultMap">
+  <select id="selectByRankAndCityAndKlmc" resultMap="BaseResultMap">
     SELECT
     DISTINCT a.*
     FROM yxzdf2018 AS a, yxinfo AS b

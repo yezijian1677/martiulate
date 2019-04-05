@@ -63,7 +63,20 @@ public class SchoolInfoServiceImpl implements SchoolInfoService {
      */
     @Override
     public ServerResponse<List<SchoolInfo>> listAll() {
-        List<SchoolInfo> schoolInfoList = schoolInfoMapper.listAll();
+
+        List<SchoolInfo> schoolInfoList;
+        String redisName = "allList";
+        //判断redis中是否存在该数据 若有则使用redis中的数据
+        String rankSubjectList = RedisPoolUtil.get(redisName);
+
+        if (rankSubjectList == null){
+            schoolInfoList = schoolInfoMapper.listAll();
+            RedisPoolUtil.setEx(redisName, JsonUtil.obj2String(schoolInfoList), 120);
+        } else {
+            schoolInfoList = JsonUtil.string2Obj(rankSubjectList, List.class, SchoolInfo.class);
+
+        }
+
         if (schoolInfoList==null){
             return ServerResponse.createByErrorMessage("未找到符合志愿信息");
         }
@@ -79,26 +92,27 @@ public class SchoolInfoServiceImpl implements SchoolInfoService {
      * @return
      */
     @Override
-    public ServerResponse<List<SchoolInfo>> selectByRankAndCity(Integer pm, String city, String klmc) {
+    public ServerResponse<List<SchoolInfo>> selectByRankAndCityAndKlmc(Integer pm, String city, String klmc) {
+
         if (pm == null || city == null || klmc == null){
             return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
         }
-        List<SchoolInfo> schoolMajorInfos;
+        List<SchoolInfo> schoolInfos;
         String pmStr = String.valueOf(pm);
         String redisName = "rankSubjectList"+pmStr+city+klmc;
         //判断redis中是否存在该数据 若有则使用redis中的数据
         String rankMajorList = RedisPoolUtil.get(redisName);
 
         if (rankMajorList == null){
-            schoolMajorInfos = schoolInfoMapper.selectByRankAndCity(pm, city, klmc);
-            RedisPoolUtil.setEx(redisName, JsonUtil.obj2String(schoolMajorInfos), 120);
+            schoolInfos = schoolInfoMapper.selectByRankAndCityAndKlmc(pm, city, klmc);
+            RedisPoolUtil.setEx(redisName, JsonUtil.obj2String(schoolInfos), 120);
         }else {
-            schoolMajorInfos = JsonUtil.string2Obj(RedisPoolUtil.get(redisName),List.class, SchoolMajorInfo.class);
+            schoolInfos = JsonUtil.string2Obj(RedisPoolUtil.get(redisName),List.class, SchoolMajorInfo.class);
         }
 
-        if (schoolMajorInfos == null){
+        if (schoolInfos == null){
             return ServerResponse.createByErrorMessage("未找到符合条件信息");
         }
-        return ServerResponse.createBySuccess(schoolMajorInfos);
+        return ServerResponse.createBySuccess(schoolInfos);
     }
 }

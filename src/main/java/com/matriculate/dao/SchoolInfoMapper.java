@@ -17,6 +17,6 @@ public interface SchoolInfoMapper {
 
     List<SchoolInfo> listAll();
 
-    List<SchoolInfo> selectByRankAndCity(@Param("pm") Integer pm, @Param("city") String city, @Param("klmc") String klmc);
+    List<SchoolInfo> selectByRankAndCityAndKlmc(@Param("pm")Integer pm, @Param("city")String city, @Param("klmc")String klmc);
 
 }

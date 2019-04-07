@@ -159,4 +159,13 @@
       </if>
     </trim>
   </insert>
+
+  <select id="selectYxByYxdm" parameterType="string" resultMap="BaseResultMap">
+    select
+    *
+    from
+    yxinfo
+    where
+    yxdm = #{yxdm}
+  </select>
 </mapper>
